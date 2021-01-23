@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: $pale-blue;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    width: 40%;
+}

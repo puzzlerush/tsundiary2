@@ -1,0 +1,13 @@
+textarea {
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+    resize: none;
+    font-size: $font-size-small;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+textarea:focus {
+    outline: none;
+}
