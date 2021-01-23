@@ -1,6 +1,8 @@
 const entriesReducerDefaultState = [];
 export default (state = entriesReducerDefaultState, action) => {
     switch(action.type) {
+        case 'ADD_ENTRY':
+            return state.concat(action.entry);
         case 'EDIT_TODAYS_ENTRY':
             const todaysEntry = state.find((entry) => entry.date === action.date);
             if (todaysEntry) {

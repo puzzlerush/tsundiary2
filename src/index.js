@@ -6,8 +6,46 @@ import './styles/styles.scss';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 
+//REMOVE LATER
+import { addEntry } from './actions/entries';
+import moment from 'moment';
 const store = configureStore();
 
+// REMOVE LATER
+const dummyEntries = [
+  {
+    date: moment().startOf('day').format(),
+    content: 'what a beautiful day! children like you should... GO STRAIGHT TO HELL'
+  },
+  {
+    date: moment().startOf('day').subtract(1, 'days').format(),
+    content: 'yesterday'
+  },
+  {
+    date: moment().startOf('day').subtract(7, 'days').format(),
+    content: 'one week ago'
+  },
+  {
+    date: moment().startOf('day').subtract(1, 'months').format(),
+    content: '30 days ago'
+  },
+  {
+    date: moment().startOf('day').subtract(6, 'months').format(),
+    content: '6 months ago'
+  },
+  {
+    date: moment().startOf('day').subtract(1, 'year').format(),
+    content: '1 year ago'
+  },
+  {
+    date: moment().startOf('day').subtract(10, 'days').format(),
+    content: 'random entry'
+  }
+];
+
+dummyEntries.forEach(entry => {
+  store.dispatch(addEntry(entry));
+});
 
 ReactDOM.render(
   <React.StrictMode>

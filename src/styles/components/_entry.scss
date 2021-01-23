@@ -1,0 +1,23 @@
+.entry-wrapper {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.entry {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    width: 100%;
+    padding: $s-size;
+    margin-top: $s-size;
+    font-size: $font-size-small;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+}
+
+.entry * {
+    overflow-wrap: break-word;
+    max-width: 100%;
+    max-height: 100%;
+    list-style-position: inside;
+}
