@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import marked from 'marked';
 import TextareaAutosize from 'react-textarea-autosize';
+import moment from 'moment';
+import { editTodaysEntry } from '../actions/entries';
 
 const prompts = [
     "I'm only here because I have nothing else to do, that's all!",
@@ -14,7 +17,6 @@ class Editor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: '',
             showPreview: false
         };
 
@@ -23,22 +25,28 @@ class Editor extends React.Component {
 
     handleChange(e) {
         const value = e.target.value;
-        this.setState(() => ({ input: value }));
+        this.props.dispatch(editTodaysEntry({ content: value }));
     }
 
     render() {
         const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)]
+        const todaysEntry = this.props.entries.find((entry) => entry.date === moment().startOf('day').format());
+        const todaysEntryContent = todaysEntry ? todaysEntry.content : '';
         return (
             <div className="editor">
                 <TextareaAutosize
                     minRows={5}
                     placeholder={randomPrompt}
                     onChange={this.handleChange} 
-                    value={this.state.input} 
+                    value={todaysEntryContent} 
                 />
             </div>
         );
     }
 }
 
-export default Editor;
+const mapStateToProps = (state) => ({
+    entries: state.entries
+});
+
+export default connect(mapStateToProps)(Editor);
