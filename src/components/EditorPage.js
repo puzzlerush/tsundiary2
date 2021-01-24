@@ -61,6 +61,7 @@ class Editor extends React.Component {
     }
 
     render() {
+        const { entries } = this.props;
         const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)]
         const todaysEntry = this.props.entries.find((entry) => entry.date === moment().startOf('day').format());
         const todaysEntryContent = todaysEntry ? todaysEntry.content : '';
@@ -99,7 +100,7 @@ class Editor extends React.Component {
                         )
                     }
                 </div>
-                <Entries relativeDates={true} filterEntries={this.filterEntries} />
+                <Entries relativeDates={true} filteredEntries={this.filterEntries(entries)} />
             </div>
         );
     }

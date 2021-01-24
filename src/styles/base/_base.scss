@@ -7,6 +7,11 @@ html {
     background-color: $pale-blue;
 }
 
+body {
+    font-size: $font-size-small;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 .app {
     display: flex;
     justify-content: center;

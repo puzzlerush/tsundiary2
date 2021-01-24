@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import moment from 'moment';
 import marked from 'marked';
 
@@ -15,12 +14,11 @@ class Entries extends React.Component {
     }
 
     render() {
-        const { relativeDates, filterEntries } = this.props;
-        const sortedEntries = this.props.entries.sort((a, b) => (
+        const { relativeDates, filteredEntries } = this.props;
+        const sortedEntries = filteredEntries.sort((a, b) => (
             moment(b.date).valueOf() - moment(a.date).valueOf()
         ));
-        const filteredEntries = filterEntries(sortedEntries);
-        const entriesToShow = filteredEntries.map((entry) => (
+        const entriesToShow = sortedEntries.map((entry) => (
             <div key={entry.date} className="entry">
                 <div className="heading">
                     {relativeDates ? (
@@ -34,14 +32,18 @@ class Entries extends React.Component {
         ));
         return (
             <div className="entry-wrapper">
-                {entriesToShow}
+                {entriesToShow.length > 0 ? (
+                    entriesToShow
+                ) : (
+                    relativeDates ? (
+                        <p>Once you have a history of entries, I'll show them to you at certain intervals.</p>
+                    ) : (
+                        <p>There are no entries to show.</p>
+                    )
+                ) }
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => ({
-    entries: state.entries
-});
-
-export default connect(mapStateToProps)(Entries);
+export default Entries;
