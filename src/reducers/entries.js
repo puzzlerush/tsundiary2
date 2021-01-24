@@ -15,7 +15,7 @@ export default (state = entriesReducerDefaultState, action) => {
                     } else {
                         return entry;
                     }
-                });
+                }).filter((entry) => entry.content !== '');
             } else {
                 const newEntry = {
                     date: action.date,
@@ -23,7 +23,8 @@ export default (state = entriesReducerDefaultState, action) => {
                 };
                 return [newEntry, ...state];
             }
-            
+        case 'SET_ENTRIES':
+            return action.entries;    
         default:
             return state;
     }

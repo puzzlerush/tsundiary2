@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import marked from 'marked';
 import TextareaAutosize from 'react-textarea-autosize';
 import moment from 'moment';
-import { editTodaysEntry } from '../actions/entries';
+import { startEditTodaysEntry } from '../actions/entries';
 import Entries from './Entries';
 
 const prompts = [
@@ -29,7 +29,7 @@ class Editor extends React.Component {
 
     handleChange(e) {
         const value = e.target.value;
-        this.props.dispatch(editTodaysEntry({ content: value }));
+        this.props.startEditTodaysEntry({ content: value });
     }
 
     togglePreview() {
@@ -110,4 +110,8 @@ const mapStateToProps = (state) => ({
     entries: state.entries
 });
 
-export default connect(mapStateToProps)(Editor);
+const mapDispatchToProps = (dispatch) => ({
+    startEditTodaysEntry: (updates) => dispatch(startEditTodaysEntry(updates))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);

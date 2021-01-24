@@ -1,6 +1,8 @@
 .filter-wrapper {
-    display: flex;
-    align-items: center;
+    margin-top: $l-size;
+    height: $l-size;
+    line-height: $l-size;
+    vertical-align: middle;
     width: 100%
 }
 

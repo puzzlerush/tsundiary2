@@ -9,7 +9,7 @@ import configureStore from './store/configureStore';
 import './styles/styles.scss';
 
 //REMOVE LATER
-import { addEntry } from './actions/entries';
+import { addEntry, startSetEntries } from './actions/entries';
 import moment from 'moment';
 const store = configureStore();
 
@@ -48,6 +48,8 @@ const dummyEntries = [
 dummyEntries.forEach(entry => {
   store.dispatch(addEntry(entry));
 });
+
+store.dispatch(startSetEntries());
 
 ReactDOM.render(
   <React.StrictMode>
