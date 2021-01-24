@@ -6,6 +6,12 @@ export const addEntry = (entry) => ({
     entry
 });
 
+export const startAddEntry = (entry) => {
+    return (dispatch) => {
+        database.ref(`entries/${entry.date}`).set({ content: entry.content });
+    };
+}
+
 export const editTodaysEntry = (updates) => ({
     type: 'EDIT_TODAYS_ENTRY',
     date: moment().startOf('day').format(),

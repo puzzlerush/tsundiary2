@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { firebase } from './firebase/firebase';
 import 'normalize.css/normalize.css';
 import "react-dates/initialize";
 import 'react-dates/lib/css/_datepicker.css';
@@ -9,7 +10,7 @@ import configureStore from './store/configureStore';
 import './styles/styles.scss';
 
 //REMOVE LATER
-import { addEntry, startSetEntries } from './actions/entries';
+import { addEntry, startAddEntry, startSetEntries } from './actions/entries';
 import moment from 'moment';
 const store = configureStore();
 
@@ -46,12 +47,12 @@ const dummyEntries = [
 ];
 
 dummyEntries.forEach(entry => {
-  store.dispatch(addEntry(entry));
+  store.dispatch(startAddEntry(entry));
 });
 
 store.dispatch(startSetEntries());
 
-ReactDOM.render(
+const jsx = (
   <React.StrictMode>
     <div className="app">
       <div className="wrapper">
@@ -60,7 +61,19 @@ ReactDOM.render(
         </Provider>
       </div>
     </div>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(jsx, document.getElementById('root'));
+    hasRendered = true;
+  }
+};
+
+ReactDOM.render(<p>Loading...</p>, document.getElementById('root'));
+
+firebase.auth().onAuthStateChanged((user) => {
+  renderApp();
+});
