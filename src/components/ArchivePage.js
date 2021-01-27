@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { DateRangePicker } from 'react-dates';
 import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
 import Entries from "./Entries";
@@ -43,10 +44,11 @@ class ArchivePage extends React.Component {
     }
 
     render() {
-        const { entries } = this.props;
+        const { entries, email } = this.props;
         const { startDate, endDate } = this.props.filters;
         return (
             <div style={{ marginTop: 30 }}>
+                <div className="email"><Link to={`/${email.split('@')[0]}`}>{email}</Link></div>
                 <div className="icon-aligned">
                     <StarOutlinedIcon style={{ width: 18, height: 18, marginRight: 3 }}/>
                     <span>{entries.length} days of entries</span>
@@ -80,7 +82,8 @@ class ArchivePage extends React.Component {
 
 const mapStateToProps = (state) => ({
     entries: state.entries,
-    filters: state.filters
+    filters: state.filters,
+    email: state.auth.user.email
 });
 
 const mapDispatchToProps = (dispatch) => ({

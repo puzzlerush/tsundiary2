@@ -4,7 +4,6 @@
 
 html {
     font-size: 62.5%;
-    background-color: $pale-blue;
 }
 
 body {
@@ -15,8 +14,39 @@ body {
 .app {
     display: flex;
     justify-content: center;
+    min-height: 100vh;
 }
 
 .wrapper {
     width: 40%;
+}
+
+@media (max-width: 1500px) {
+    .wrapper {
+        width: 50%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .wrapper {
+        width: 60%;
+    }
+}
+
+@media (max-width: 800px) {
+    .wrapper {
+        width: 80%;
+    }
+}
+
+@media (max-width: 500px) {
+    .wrapper {
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px) {
+    .wrapper {
+        width: 95%;
+    }
 }

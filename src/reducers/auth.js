@@ -7,10 +7,11 @@ export default (state = authReducerDefaultState, action) => {
     switch (action.type) {
         case 'LOGIN':
             return {
-                uid: action.uid
+                ...authReducerDefaultState,
+                user: action.user
             };
         case 'LOGOUT':
-            return {};
+            return authReducerDefaultState;
         default:
             return state;
     }
