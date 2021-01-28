@@ -1,8 +1,8 @@
 const themeStyles = {
-    'default': {
+    'Default': {
         backgroundColor: '#d9f7f7'
     },
-    'yui': {
+    'Yui Yuigahama': {
         backgroundColor: '#fadadd'
     }
 };

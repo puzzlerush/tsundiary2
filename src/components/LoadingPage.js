@@ -16,7 +16,7 @@ const LoadingPage = ({ theme }) => (
 );
 
 const mapStateToProps = (state) => ({
-    theme: state.auth.preferences.theme
+    theme: state.auth.theme
 });
 
 export default connect(mapStateToProps)(LoadingPage);

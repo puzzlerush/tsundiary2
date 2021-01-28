@@ -7,8 +7,9 @@ export const addEntry = (entry) => ({
 });
 
 export const startAddEntry = (entry) => {
-    return (dispatch) => {
-        database.ref(`entries/${entry.date}`).set({ content: entry.content });
+    return (dispatch, getState) => {
+        const email = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${email}/entries/${entry.date}`).set({ content: entry.content });
     };
 }
 
@@ -19,13 +20,14 @@ export const editTodaysEntry = (updates) => ({
 });
 
 export const startEditTodaysEntry = (updates) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const email = getState().auth.user.email.split('@')[0];
         const today = moment().startOf('day').format();
         dispatch(editTodaysEntry(updates));
         if (updates.content) {
-            return database.ref(`entries/${today}`).set(updates);
+            return database.ref(`users/${email}/entries/${today}`).set(updates);
         } else {
-            return database.ref(`entries/${today}`).remove();
+            return database.ref(`users/${email}/entries/${today}`).remove();
         }
     };
 };
@@ -36,8 +38,9 @@ export const setEntries = (entries) => ({
 });
 
 export const startSetEntries = () => {
-    return (dispatch) => {
-        return database.ref(`entries`).once('value').then((snapshot) => {
+    return (dispatch, getState) => {
+        const email = getState().auth.user.email.split('@')[0];
+        return database.ref(`users/${email}/entries`).once('value').then((snapshot) => {
             const entries = [];
             snapshot.forEach((childSnapshot) => {
                 entries.push({

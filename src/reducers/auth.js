@@ -1,17 +1,24 @@
 const authReducerDefaultState = {
-    preferences: {
-        theme: 'default'
-    }
+    user: null,
+    theme: 'Default'
 };
 export default (state = authReducerDefaultState, action) => {
     switch (action.type) {
         case 'LOGIN':
             return {
-                ...authReducerDefaultState,
+                ...state,
                 user: action.user
             };
         case 'LOGOUT':
-            return authReducerDefaultState;
+            return {
+                ...state,
+                user: null
+            };
+        case 'SET_THEME':
+            return {
+                ...state,
+                theme: action.theme
+            };
         default:
             return state;
     }

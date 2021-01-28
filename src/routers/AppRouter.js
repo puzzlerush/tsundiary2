@@ -5,6 +5,7 @@ import { createBrowserHistory } from 'history';
 import LoginPage from '../components/LoginPage';
 import EditorPage from '../components/EditorPage';
 import ArchivePage from '../components/ArchivePage';
+import SettingsPage from '../components/SettingsPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import themeStyles from '../themes';
@@ -20,6 +21,7 @@ const AppRouter = ({ theme }) => (
             <PublicRoute path="/" component={LoginPage} exact={true} />
             <PrivateRoute path="/write" component={EditorPage} />
             <PrivateRoute path="/archive" component={ArchivePage} />
+            <PrivateRoute path="/settings" component={SettingsPage} />
           </Switch>
         </div>
       </Router>
@@ -28,7 +30,7 @@ const AppRouter = ({ theme }) => (
 );
 
 const mapStateToProps = (state) => ({
-  theme: state.auth.preferences.theme
+  theme: state.auth.theme
 });
 
 export default connect(mapStateToProps)(AppRouter);
