@@ -8,7 +8,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import AppRouter, { history } from './routers/AppRouter';
 import LoadingPage from './components/LoadingPage';
 import configureStore from './store/configureStore';
-import { login, logout, setTheme, startGetTheme } from './actions/auth';
+import { login, logout, setTheme, startGetTheme, startGetPrivacySettings } from './actions/auth';
 import { startSetEntries } from './actions/entries';
 import './styles/styles.scss';
 
@@ -41,6 +41,7 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user));
     store.dispatch(startGetTheme());
+    store.dispatch(startGetPrivacySettings());
     store.dispatch(startSetEntries()).then(() => {
       renderApp();
       if (history.location.pathname === '/') {

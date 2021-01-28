@@ -1,6 +1,7 @@
 const authReducerDefaultState = {
     user: null,
-    theme: 'Default'
+    theme: 'Default',
+    privacy: true
 };
 export default (state = authReducerDefaultState, action) => {
     switch (action.type) {
@@ -18,6 +19,16 @@ export default (state = authReducerDefaultState, action) => {
             return {
                 ...state,
                 theme: action.theme
+            };
+        case 'SET_PRIVATE':
+            return {
+                ...state,
+                privacy: true
+            };
+        case 'SET_PUBLIC':
+            return {
+                ...state,
+                privacy: false
             };
         default:
             return state;

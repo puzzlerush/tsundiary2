@@ -42,5 +42,44 @@ export const startSetTheme = (theme) => {
         database.ref(`users/${email}/theme`).set(theme).then(() => {
             dispatch(setTheme(theme));
         });
-    }
-}
+    };
+};
+
+export const setPrivate = () => ({
+    type: 'SET_PRIVATE'
+});
+
+export const startSetPrivate = () => {
+    return (dispatch, getState) => {
+        const email = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${email}/privacy`).set(true).then(() => {
+            dispatch(setPrivate());
+        });
+    };
+};
+
+export const setPublic = () => ({
+    type: 'SET_PUBLIC'
+});
+
+export const startSetPublic = () => {
+    return (dispatch, getState) => {
+        const email = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${email}/privacy`).set(false).then(() => {
+            dispatch(setPublic());
+        });
+    };
+}; 
+
+export const startGetPrivacySettings = () => {
+    return (dispatch, getState) => {
+        const email = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${email}/privacy`).once('value').then((snapshot) => {
+            if (snapshot.val() || snapshot.val() === undefined) {
+                dispatch(setPrivate());
+            } else {
+                dispatch(setPublic());
+            }
+        });
+    };
+};
