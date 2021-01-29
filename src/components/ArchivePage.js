@@ -11,6 +11,7 @@ class ArchivePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            isPrivate: false,
             calendarFocused: null
         };
         this.filterEntries = this.filterEntries.bind(this);
@@ -21,15 +22,16 @@ class ArchivePage extends React.Component {
     
     componentDidMount() {
         const { match, startSetEntries } = this.props;
-        console.log(match)
-        startSetEntries(match.params.username);
+        startSetEntries(match.params.username).catch(() => {
+            this.setState({ isPrivate: true });
+        });
     }
 
     filterEntries(entries) {
         return entries.filter((entry) => {
             const { startDate, endDate, textFilter } = this.props.filters;
-            const startDateMatch = !startDate || startDate.isSameOrBefore(entry.date);
-            const endDateMatch = !endDate || endDate.isSameOrAfter(entry.date);
+            const startDateMatch = !startDate || startDate.startOf('day').isSameOrBefore(entry.date);
+            const endDateMatch = !endDate || endDate.endOf('day').isSameOrAfter(entry.date);
             const textFilterMatch = entry.content.toLowerCase().includes(textFilter.toLowerCase());
             return startDateMatch && endDateMatch && textFilterMatch;
         });
@@ -51,37 +53,45 @@ class ArchivePage extends React.Component {
     }
 
     render() {
-        const { entries, email } = this.props;
+        const { isPrivate } = this.state;
+        const { entries, match } = this.props;
         const { startDate, endDate } = this.props.filters;
         return (
             <div style={{ marginTop: 30 }}>
-                <div className="email">{email.split('@')[0]}</div>
-                <div className="icon-aligned">
-                    <StarOutlinedIcon style={{ width: 18, height: 18, marginRight: 3 }}/>
-                    <span>{entries.length} days of entries</span>
-                </div>
-                <div className="filter-wrapper">
-                    <input 
-                        type="text" 
-                        placeholder="Search"
-                        onChange={this.onTextFilterChange} 
-                    />
-                    <div style={{ float: "right" }}>
-                        <DateRangePicker
-                            startDate={startDate}
-                            startDateId="start_date_id"
-                            endDate={endDate}
-                            endDateId="end_date_id"
-                            onDatesChange={this.onDatesChange}
-                            focusedInput={this.state.calendarFocused}
-                            onFocusChange={this.onFocusChange}
-                            showClearDates={true}
-                            numberOfMonths={1}
-                            isOutsideRange={() => false}
-                        /> 
+                { isPrivate ? (
+                    <p>This user's tsundiary is private.</p>
+                ) : (
+                    <div>
+                        <div className="username">{match.params.username}</div>
+                        <div className="icon-aligned">
+                            <StarOutlinedIcon style={{ width: 18, height: 18, marginRight: 3 }}/>
+                            <span>{entries.length} days of entries</span>
+                        </div>
+                        <div className="filter-wrapper">
+                            <input 
+                                type="text" 
+                                placeholder="Search"
+                                onChange={this.onTextFilterChange} 
+                            />
+                            <div style={{ float: "right" }}>
+                                <DateRangePicker
+                                    startDate={startDate}
+                                    startDateId="start_date_id"
+                                    endDate={endDate}
+                                    endDateId="end_date_id"
+                                    onDatesChange={this.onDatesChange}
+                                    focusedInput={this.state.calendarFocused}
+                                    onFocusChange={this.onFocusChange}
+                                    showClearDates={true}
+                                    numberOfMonths={1}
+                                    isOutsideRange={() => false}
+                                /> 
+                            </div>
+                        </div>
+                        <Entries relativeDates={false} filteredEntries={this.filterEntries(entries)} />
                     </div>
-                </div>
-                <Entries relativeDates={false} filteredEntries={this.filterEntries(entries)} />
+                )}
+                
             </div>
         );
     }

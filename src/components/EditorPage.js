@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import marked from 'marked';
 import TextareaAutosize from 'react-textarea-autosize';
 import moment from 'moment';
-import { startEditTodaysEntry } from '../actions/entries';
+import { startEditTodaysEntry, startSetEntries } from '../actions/entries';
 import Entries from './Entries';
 
 const prompts = [
@@ -25,6 +25,11 @@ class Editor extends React.Component {
         this.togglePreview = this.togglePreview.bind(this);
         this.createMarkup = this.createMarkup.bind(this);
         this.filterEntries = this.filterEntries.bind(this);
+    }
+
+    componentDidMount() {
+        const { email, startSetEntries } = this.props;
+        startSetEntries(email);
     }
 
     handleChange(e) {
@@ -107,11 +112,13 @@ class Editor extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    entries: state.entries
+    entries: state.entries,
+    email: state.auth.user.email
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    startEditTodaysEntry: (updates) => dispatch(startEditTodaysEntry(updates))
+    startEditTodaysEntry: (updates) => dispatch(startEditTodaysEntry(updates)),
+    startSetEntries: (email) => dispatch(startSetEntries(email))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);
