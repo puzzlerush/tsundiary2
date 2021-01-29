@@ -28,8 +28,8 @@ export const setTheme = (theme) => ({
 
 export const startGetTheme = () => {
     return (dispatch, getState) => {
-        const email = getState().auth.user.email.split('@')[0];
-        database.ref(`users/${email}/theme`).once('value').then((snapshot) => {
+        const username = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${username}/theme`).once('value').then((snapshot) => {
             const theme = snapshot.val() || 'Default';
             dispatch(setTheme(theme));
         });
@@ -38,8 +38,8 @@ export const startGetTheme = () => {
 
 export const startSetTheme = (theme) => {
     return (dispatch, getState) => {
-        const email = getState().auth.user.email.split('@')[0];
-        database.ref(`users/${email}/theme`).set(theme).then(() => {
+        const username = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${username}/theme`).set(theme).then(() => {
             dispatch(setTheme(theme));
         });
     };
@@ -51,8 +51,8 @@ export const setPrivate = () => ({
 
 export const startSetPrivate = () => {
     return (dispatch, getState) => {
-        const email = getState().auth.user.email.split('@')[0];
-        database.ref(`users/${email}/privacy`).set(true).then(() => {
+        const username = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${username}/privacy`).set(true).then(() => {
             dispatch(setPrivate());
         });
     };
@@ -64,8 +64,8 @@ export const setPublic = () => ({
 
 export const startSetPublic = () => {
     return (dispatch, getState) => {
-        const email = getState().auth.user.email.split('@')[0];
-        database.ref(`users/${email}/privacy`).set(false).then(() => {
+        const username = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${username}/privacy`).set(false).then(() => {
             dispatch(setPublic());
         });
     };
@@ -73,8 +73,8 @@ export const startSetPublic = () => {
 
 export const startGetPrivacySettings = () => {
     return (dispatch, getState) => {
-        const email = getState().auth.user.email.split('@')[0];
-        database.ref(`users/${email}/privacy`).once('value').then((snapshot) => {
+        const username = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${username}/privacy`).once('value').then((snapshot) => {
             if (snapshot.val() || snapshot.val() === undefined) {
                 dispatch(setPrivate());
             } else {

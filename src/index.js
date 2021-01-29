@@ -42,7 +42,7 @@ firebase.auth().onAuthStateChanged((user) => {
     store.dispatch(login(user));
     store.dispatch(startGetTheme());
     store.dispatch(startGetPrivacySettings());
-    store.dispatch(startSetEntries()).then(() => {
+    store.dispatch(startSetEntries(user.email)).then(() => {
       renderApp();
       if (history.location.pathname === '/') {
         history.push('/write');

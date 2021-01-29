@@ -5,6 +5,7 @@ import { DateRangePicker } from 'react-dates';
 import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
 import Entries from "./Entries";
 import { setStartDate, setEndDate, setTextFilter } from '../actions/filters';
+import { startSetEntries } from '../actions/entries';
 
 class ArchivePage extends React.Component {
     constructor(props) {
@@ -18,6 +19,12 @@ class ArchivePage extends React.Component {
         this.onTextFilterChange = this.onTextFilterChange.bind(this)
     }
     
+    componentDidMount() {
+        const { match, startSetEntries } = this.props;
+        console.log(match)
+        startSetEntries(match.params.username);
+    }
+
     filterEntries(entries) {
         return entries.filter((entry) => {
             const { startDate, endDate, textFilter } = this.props.filters;
@@ -89,7 +96,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     setStartDate: (startDate) => dispatch(setStartDate(startDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
-    setTextFilter: (text) => dispatch(setTextFilter(text))
+    setTextFilter: (text) => dispatch(setTextFilter(text)),
+    startSetEntries: (email) => dispatch(startSetEntries(email))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArchivePage);

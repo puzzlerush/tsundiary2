@@ -8,17 +8,21 @@ import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import { startLogout } from '../actions/auth';
 
-const Navbar = ({ startLogout }) => (
+const Navbar = ({ email, startLogout }) => (
     <div className="navbar">
         <Link to="/write"><Button><CreateOutlinedIcon /></Button></Link>
-        <Link to="/archive"><Button><DescriptionOutlinedIcon /></Button></Link>
+        <Link to={`/users/${email.split('@')[0]}`}><Button><DescriptionOutlinedIcon /></Button></Link>
         <Link to="/settings"><Button><SettingsOutlinedIcon /></Button></Link>
         <Button style={{float: "right"}} onClick={startLogout}><ExitToAppOutlinedIcon /></Button>
     </div>
 );
 
+const mapStateToProps = (state) => ({
+    email: state.auth.user.email
+});
+
 const mapDispatchToProps = (dispatch) => ({
     startLogout: () => dispatch(startLogout())
 });
 
-export default connect(undefined, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

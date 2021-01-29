@@ -20,7 +20,7 @@ const AppRouter = ({ theme }) => (
           <Switch>
             <PublicRoute path="/" component={LoginPage} exact={true} />
             <PrivateRoute path="/write" component={EditorPage} />
-            <PrivateRoute path="/archive" component={ArchivePage} />
+            <PrivateRoute path="/users/:username" component={ArchivePage} />
             <PrivateRoute path="/settings" component={SettingsPage} />
           </Switch>
         </div>

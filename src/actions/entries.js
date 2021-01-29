@@ -8,8 +8,8 @@ export const addEntry = (entry) => ({
 
 export const startAddEntry = (entry) => {
     return (dispatch, getState) => {
-        const email = getState().auth.user.email.split('@')[0];
-        database.ref(`users/${email}/entries/${entry.date}`).set({ content: entry.content });
+        const username = getState().auth.user.email.split('@')[0];
+        database.ref(`users/${username}/entries/${entry.date}`).set({ content: entry.content });
     };
 }
 
@@ -21,13 +21,13 @@ export const editTodaysEntry = (updates) => ({
 
 export const startEditTodaysEntry = (updates) => {
     return (dispatch, getState) => {
-        const email = getState().auth.user.email.split('@')[0];
+        const username = getState().auth.user.email.split('@')[0];
         const today = moment().startOf('day').format();
         dispatch(editTodaysEntry(updates));
         if (updates.content) {
-            return database.ref(`users/${email}/entries/${today}`).set(updates);
+            return database.ref(`users/${username}/entries/${today}`).set(updates);
         } else {
-            return database.ref(`users/${email}/entries/${today}`).remove();
+            return database.ref(`users/${username}/entries/${today}`).remove();
         }
     };
 };
@@ -37,10 +37,10 @@ export const setEntries = (entries) => ({
     entries
 });
 
-export const startSetEntries = () => {
-    return (dispatch, getState) => {
-        const email = getState().auth.user.email.split('@')[0];
-        return database.ref(`users/${email}/entries`).once('value').then((snapshot) => {
+export const startSetEntries = (email) => {
+    return (dispatch) => {
+        const username = email.split('@')[0];
+        return database.ref(`users/${username}/entries`).once('value').then((snapshot) => {
             const entries = [];
             snapshot.forEach((childSnapshot) => {
                 entries.push({
