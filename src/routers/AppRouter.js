@@ -10,7 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import themeStyles from '../themes';
 
-export const history = createBrowserHistory({ basename: 'tsundiary2-rewrite' });
+export const history = createBrowserHistory({ basename: 'tsundiary2' });
 
 const AppRouter = ({ theme }) => (
   <div className="app" style={themeStyles[theme]}>
