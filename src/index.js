@@ -40,7 +40,7 @@ ReactDOM.render((
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user));
-    store.dispatch(startGetTheme());
+    store.dispatch(startGetTheme(user.email));
     store.dispatch(startGetPrivacySettings());
     store.dispatch(startSetEntries(user.email)).then(() => {
       renderApp();

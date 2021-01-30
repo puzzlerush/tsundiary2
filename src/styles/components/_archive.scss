@@ -2,3 +2,12 @@
     margin: 15px 0;
     font-size: $font-size-large;
 }
+
+.username a {
+    color: #333;
+    text-decoration: none;
+}
+
+.username a:hover {
+    color: #555;
+}

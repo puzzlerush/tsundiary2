@@ -6,6 +6,7 @@ import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
 import Entries from "./Entries";
 import { setStartDate, setEndDate, setTextFilter } from '../actions/filters';
 import { startSetEntries } from '../actions/entries';
+import { startGetTheme } from '../actions/auth';
 
 class ArchivePage extends React.Component {
     constructor(props) {
@@ -21,8 +22,10 @@ class ArchivePage extends React.Component {
     }
     
     componentDidMount() {
-        const { match, startSetEntries } = this.props;
-        startSetEntries(match.params.username).catch(() => {
+        const { match, startSetEntries, startGetTheme } = this.props;
+        startSetEntries(match.params.username).then(() => {
+            startGetTheme(match.params.username);
+        }).catch(() => {
             this.setState({ isPrivate: true });
         });
     }
@@ -62,7 +65,7 @@ class ArchivePage extends React.Component {
                     <p>This user's tsundiary is private.</p>
                 ) : (
                     <div>
-                        <div className="username">{match.params.username}</div>
+                        <div className="username"><Link to={`/users/${match.params.username}`}>{match.params.username}</Link></div>
                         <div className="icon-aligned">
                             <StarOutlinedIcon style={{ width: 18, height: 18, marginRight: 3 }}/>
                             <span>{entries.length} days of entries</span>
@@ -107,7 +110,8 @@ const mapDispatchToProps = (dispatch) => ({
     setStartDate: (startDate) => dispatch(setStartDate(startDate)),
     setEndDate: (endDate) => dispatch(setEndDate(endDate)),
     setTextFilter: (text) => dispatch(setTextFilter(text)),
-    startSetEntries: (email) => dispatch(startSetEntries(email))
+    startSetEntries: (email) => dispatch(startSetEntries(email)),
+    startGetTheme: (email) => dispatch(startGetTheme(email))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArchivePage);

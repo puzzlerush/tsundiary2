@@ -26,9 +26,9 @@ export const setTheme = (theme) => ({
     theme
 });
 
-export const startGetTheme = () => {
-    return (dispatch, getState) => {
-        const username = getState().auth.user.email.split('@')[0];
+export const startGetTheme = (email) => {
+    return (dispatch) => {
+        const username = email.split('@')[0];
         database.ref(`users/${username}/theme`).once('value').then((snapshot) => {
             const theme = snapshot.val() || 'Default';
             dispatch(setTheme(theme));

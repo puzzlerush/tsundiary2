@@ -4,6 +4,7 @@ import marked from 'marked';
 import TextareaAutosize from 'react-textarea-autosize';
 import moment from 'moment';
 import { startEditTodaysEntry, startSetEntries } from '../actions/entries';
+import { startGetTheme } from '../actions/auth';
 import Entries from './Entries';
 
 const prompts = [
@@ -28,8 +29,9 @@ class Editor extends React.Component {
     }
 
     componentDidMount() {
-        const { email, startSetEntries } = this.props;
+        const { email, startSetEntries, startGetTheme } = this.props;
         startSetEntries(email);
+        startGetTheme(email);
     }
 
     handleChange(e) {
@@ -118,7 +120,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     startEditTodaysEntry: (updates) => dispatch(startEditTodaysEntry(updates)),
-    startSetEntries: (email) => dispatch(startSetEntries(email))
+    startSetEntries: (email) => dispatch(startSetEntries(email)),
+    startGetTheme: (email) => dispatch(startGetTheme(email))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);
