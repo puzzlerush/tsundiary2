@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { DateRangePicker } from 'react-dates';
 import StarOutlinedIcon from '@material-ui/icons/StarOutlined';
-import Entries from "./Entries";
+import Entries from './Entries';
+import YearsAndMonths from './YearsAndMonths'
 import { setStartDate, setEndDate, setTextFilter } from '../actions/filters';
 import { startSetEntries } from '../actions/entries';
 import { startGetTheme } from '../actions/auth';
@@ -70,6 +71,7 @@ class ArchivePage extends React.Component {
                             <StarOutlinedIcon style={{ width: 18, height: 18, marginRight: 3 }}/>
                             <span>{entries.length} days of entries</span>
                         </div>
+                        <YearsAndMonths entries={entries} onDatesChange={this.onDatesChange} />
                         <div className="filter-wrapper">
                             <input 
                                 type="text" 

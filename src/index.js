@@ -12,7 +12,6 @@ import { login, logout, setTheme, startGetTheme, startGetPrivacySettings } from 
 import { startSetEntries } from './actions/entries';
 import './styles/styles.scss';
 
-
 const store = configureStore();
 
 const jsx = (

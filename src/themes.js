@@ -1,9 +1,22 @@
 const themeStyles = {
     'Default': {
-        backgroundColor: '#d9f7f7'
+        backgroundColor: '#ece6ec'
+    },
+    'Yukino Yukinoshita': {
+        backgroundColor: "#d5eaf2",
+        backgroundImage: "url(" + process.env.PUBLIC_URL + "/yukino.png" + ")",
+        backgroundSize: "auto 100vh",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "left",
+        backgroundAttachment: "fixed"
     },
     'Yui Yuigahama': {
-        backgroundColor: '#fadadd'
+        backgroundColor: '#fadadd',
+        backgroundImage: "url(" + process.env.PUBLIC_URL + "/yui.png" + ")",
+        backgroundSize: "auto 100vh",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "right",
+        backgroundAttachment: "fixed"
     }
 };
 
