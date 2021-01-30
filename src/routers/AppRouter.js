@@ -15,7 +15,7 @@ export const history = createBrowserHistory();
 const AppRouter = ({ theme }) => (
   <div className="app" style={themeStyles[theme]}>
     <div className="wrapper">
-      <Router history={history}>
+      <Router history={history} basename={process.env.PUBLIC_URL}>
         <div>
           <Switch>
             <PublicRoute path="/" component={LoginPage} exact={true} />
