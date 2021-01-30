@@ -10,12 +10,12 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import themeStyles from '../themes';
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({ basename: 'tsundiary2-rewrite' });
 
 const AppRouter = ({ theme }) => (
   <div className="app" style={themeStyles[theme]}>
     <div className="wrapper">
-      <Router history={history} basename={process.env.PUBLIC_URL}>
+      <Router history={history}>
         <div>
           <Switch>
             <PublicRoute path="/" component={LoginPage} exact={true} />
