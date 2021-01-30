@@ -15,14 +15,28 @@ const prompts = [
     "It's your privilege that I'm wasting my time listening to you...",
     "How was your day? Not that I care or anything...",
     "So, how did it go? Not that I'm expecting much!",
-    "You look good today! For once..."
+    "You look good today! For once...",
+    "B-baka baka baka!",
+    "Let me know if anything's bothering you, okay?",
+    "How was your day?",
+    "I-it's not like I'm listening to you because I like you or anything...",
+    "Don't get me wrong, it's not like I'm worried about you.",
+    "It's cute how you have no idea what's going on around you.",
+    "Tell me about your day!",
+    "I love listening to you!",
+    "M-may I have a hug?",
+    "W-would you like a hug?",
+    "You may not know this, but you have many admirers!",
+    "If you think I'm gonna miss you, think again.",
+    "... did you manage to accomplish anything today?"
 ];
 
 class Editor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showPreview: false
+            showPreview: false,
+            randomPrompt: prompts[Math.floor(Math.random() * prompts.length)]
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -79,7 +93,7 @@ class Editor extends React.Component {
 
     render() {
         const { entries } = this.props;
-        const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)]
+        const { randomPrompt } = this.state;
         const todaysEntry = this.props.entries.find((entry) => entry.date === moment().startOf('day').format());
         const todaysEntryContent = todaysEntry ? todaysEntry.content : '';
         return (
