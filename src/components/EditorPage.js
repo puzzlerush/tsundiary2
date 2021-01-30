@@ -12,7 +12,10 @@ const prompts = [
     "So, how have you been wasting your time lately?",
     "I'll forgive you, but just this once, got it?",
     "Could you be any more clueless?",
-    "It's your privilege that I'm wasting my time listening to you...."
+    "It's your privilege that I'm wasting my time listening to you...",
+    "How was your day? Not that I care or anything...",
+    "So, how did it go? Not that I'm expecting much!",
+    "You look good today! For once..."
 ];
 
 class Editor extends React.Component {
@@ -32,6 +35,13 @@ class Editor extends React.Component {
         const { email, startSetEntries, startGetTheme } = this.props;
         startSetEntries(email);
         startGetTheme(email);
+        this.interval = setInterval(() => {
+            startSetEntries(email);
+        }, 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     handleChange(e) {

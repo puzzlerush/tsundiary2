@@ -22,9 +22,9 @@ const YearsAndMonths = ({ entries, onDatesChange }) => {
                 startDate: moment([year, month]).startOf('month'),
                 endDate: moment([year, month]).endOf('month')
             });
-            return <a onClick={setDateRange}>{moment.monthsShort(month)} </a>;
+            return <a key={`${year}-${month}`} onClick={setDateRange}>{moment.monthsShort(month)} </a>;
         });
-        return (<div>{year}: {monthLinks}</div>);
+        return (<div key={year}>{year}: {monthLinks}</div>);
     });
     return (
         <div className="years-and-months">

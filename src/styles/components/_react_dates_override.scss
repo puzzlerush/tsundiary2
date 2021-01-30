@@ -3,3 +3,9 @@
     font-size: $font-size-small;
     padding: 8px 8px 5px;
 }
+
+@media (max-width: 650px) {
+    .DateRangePickerInput {
+        display: none;
+    }
+}
