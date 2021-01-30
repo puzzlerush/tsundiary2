@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/tsundiary2-rewrite/static/css/main.b48c2357.chunk.css",
-    "main.js": "/tsundiary2-rewrite/static/js/main.980ef210.chunk.js",
-    "main.js.map": "/tsundiary2-rewrite/static/js/main.980ef210.chunk.js.map",
+    "main.js": "/tsundiary2-rewrite/static/js/main.81f58b02.chunk.js",
+    "main.js.map": "/tsundiary2-rewrite/static/js/main.81f58b02.chunk.js.map",
     "runtime-main.js": "/tsundiary2-rewrite/static/js/runtime-main.6acb15e2.js",
     "runtime-main.js.map": "/tsundiary2-rewrite/static/js/runtime-main.6acb15e2.js.map",
     "static/css/2.967d44ca.chunk.css": "/tsundiary2-rewrite/static/css/2.967d44ca.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.967d44ca.chunk.css",
     "static/js/2.12348a5c.chunk.js",
     "static/css/main.b48c2357.chunk.css",
-    "static/js/main.980ef210.chunk.js"
+    "static/js/main.81f58b02.chunk.js"
   ]
 }
