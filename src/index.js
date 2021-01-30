@@ -43,14 +43,14 @@ firebase.auth().onAuthStateChanged((user) => {
     store.dispatch(startGetPrivacySettings());
     store.dispatch(startSetEntries(user.email)).then(() => {
       renderApp();
-      if (history.location.pathname === '/') {
-        history.push('/write');
+      if (history.location.pathname === '/#/') {
+        history.push('/#/write');
       }
     });
   } else {
     store.dispatch(logout());
     store.dispatch(setTheme('Default'));
     renderApp();
-    history.push('/');
+    history.push('/#/');
   }
 });
