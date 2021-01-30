@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/tsundiary2/static/css/main.b48c2357.chunk.css",
-    "main.js": "/tsundiary2/static/js/main.08465dff.chunk.js",
-    "main.js.map": "/tsundiary2/static/js/main.08465dff.chunk.js.map",
+    "main.js": "/tsundiary2/static/js/main.e1dc1bca.chunk.js",
+    "main.js.map": "/tsundiary2/static/js/main.e1dc1bca.chunk.js.map",
     "runtime-main.js": "/tsundiary2/static/js/runtime-main.c1fb66a1.js",
     "runtime-main.js.map": "/tsundiary2/static/js/runtime-main.c1fb66a1.js.map",
     "static/css/2.967d44ca.chunk.css": "/tsundiary2/static/css/2.967d44ca.chunk.css",
-    "static/js/2.c60251f5.chunk.js": "/tsundiary2/static/js/2.c60251f5.chunk.js",
-    "static/js/2.c60251f5.chunk.js.map": "/tsundiary2/static/js/2.c60251f5.chunk.js.map",
+    "static/js/2.8b7458cb.chunk.js": "/tsundiary2/static/js/2.8b7458cb.chunk.js",
+    "static/js/2.8b7458cb.chunk.js.map": "/tsundiary2/static/js/2.8b7458cb.chunk.js.map",
     "index.html": "/tsundiary2/index.html",
     "static/css/2.967d44ca.chunk.css.map": "/tsundiary2/static/css/2.967d44ca.chunk.css.map",
     "static/css/main.b48c2357.chunk.css.map": "/tsundiary2/static/css/main.b48c2357.chunk.css.map",
-    "static/js/2.c60251f5.chunk.js.LICENSE.txt": "/tsundiary2/static/js/2.c60251f5.chunk.js.LICENSE.txt"
+    "static/js/2.8b7458cb.chunk.js.LICENSE.txt": "/tsundiary2/static/js/2.8b7458cb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c1fb66a1.js",
     "static/css/2.967d44ca.chunk.css",
-    "static/js/2.c60251f5.chunk.js",
+    "static/js/2.8b7458cb.chunk.js",
     "static/css/main.b48c2357.chunk.css",
-    "static/js/main.08465dff.chunk.js"
+    "static/js/main.e1dc1bca.chunk.js"
   ]
 }
