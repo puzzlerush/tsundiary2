@@ -75,7 +75,7 @@ export const startGetPrivacySettings = () => {
     return (dispatch, getState) => {
         const username = getState().auth.user.email.split('@')[0];
         database.ref(`users/${username}/privacy`).once('value').then((snapshot) => {
-            if (snapshot.val() || snapshot.val() === undefined) {
+            if (snapshot.val() || snapshot.val() == undefined) {
                 dispatch(setPrivate());
             } else {
                 dispatch(setPublic());
