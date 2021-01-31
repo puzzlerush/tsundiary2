@@ -13,7 +13,8 @@ import themeStyles from '../themes';
 export const history = createBrowserHistory({ basename: 'tsundiary2' });
 
 const AppRouter = ({ theme }) => (
-  <div className="app" style={themeStyles[theme]}>
+  <div className="app">
+    <div className="bg" style={themeStyles[theme]} />
     <div className="wrapper">
       <Router history={history}>
         <div>
