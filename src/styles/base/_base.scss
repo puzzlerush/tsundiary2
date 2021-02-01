@@ -4,11 +4,13 @@
 
 html {
     font-size: 62.5%;
+    height: 100%;
 }
 
 body {
     font-size: $font-size-small;
     font-family: 'Source Sans Pro', sans-serif;
+    height: 100%;
 }
 
 .app {
@@ -25,6 +27,7 @@ body {
     right: 0px;
     z-index: -1;
     pointer-events: none;
+    height: 100%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
