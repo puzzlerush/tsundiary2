@@ -25,6 +25,8 @@ body {
     right: 0px;
     z-index: -1;
     pointer-events: none;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .wrapper {
