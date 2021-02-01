@@ -5,18 +5,16 @@ const themeStyles = {
     'Yukino Yukinoshita': {
         backgroundColor: "#d5eaf2",
         backgroundImage: "url(" + process.env.PUBLIC_URL + "/yukino.png" + ")",
-        backgroundSize: "auto 100vh",
+        backgroundSize: "auto 100%",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "left",
-        backgroundAttachment: "fixed"
+        backgroundPosition: "left"
     },
     'Yui Yuigahama': {
         backgroundColor: '#fadadd',
         backgroundImage: "url(" + process.env.PUBLIC_URL + "/yui.png" + ")",
-        backgroundSize: "auto 100vh",
+        backgroundSize: "auto 100%",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "right",
-        backgroundAttachment: "fixed"
+        backgroundPosition: "right"
     }
 };
 
