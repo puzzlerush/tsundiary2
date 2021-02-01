@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/tsundiary2/static/css/main.c0e3d457.chunk.css",
+    "main.css": "/tsundiary2/static/css/main.a3c3b625.chunk.css",
     "main.js": "/tsundiary2/static/js/main.3c279c6b.chunk.js",
     "main.js.map": "/tsundiary2/static/js/main.3c279c6b.chunk.js.map",
     "runtime-main.js": "/tsundiary2/static/js/runtime-main.c1fb66a1.js",
@@ -10,14 +10,14 @@
     "static/js/2.8b7458cb.chunk.js.map": "/tsundiary2/static/js/2.8b7458cb.chunk.js.map",
     "index.html": "/tsundiary2/index.html",
     "static/css/2.967d44ca.chunk.css.map": "/tsundiary2/static/css/2.967d44ca.chunk.css.map",
-    "static/css/main.c0e3d457.chunk.css.map": "/tsundiary2/static/css/main.c0e3d457.chunk.css.map",
+    "static/css/main.a3c3b625.chunk.css.map": "/tsundiary2/static/css/main.a3c3b625.chunk.css.map",
     "static/js/2.8b7458cb.chunk.js.LICENSE.txt": "/tsundiary2/static/js/2.8b7458cb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c1fb66a1.js",
     "static/css/2.967d44ca.chunk.css",
     "static/js/2.8b7458cb.chunk.js",
-    "static/css/main.c0e3d457.chunk.css",
+    "static/css/main.a3c3b625.chunk.css",
     "static/js/main.3c279c6b.chunk.js"
   ]
 }
