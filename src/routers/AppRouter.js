@@ -12,23 +12,50 @@ import themeStyles from '../themes';
 
 export const history = createBrowserHistory({ basename: 'tsundiary2' });
 
-const AppRouter = ({ theme }) => (
-  <div className="app">
-    <div className="bg" style={themeStyles[theme]} />
-    <div className="wrapper">
-      <Router history={history}>
-        <div>
-          <Switch>
-            <PublicRoute path="/" component={LoginPage} exact={true} />
-            <PrivateRoute path="/write" component={EditorPage} />
-            <PrivateRoute path="/users/:username" component={ArchivePage} />
-            <PrivateRoute path="/settings" component={SettingsPage} />
-          </Switch>
+class AppRouter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      height: window.innerHeight
+    };
+
+    this.updateDimensions = this.updateDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
+  updateDimensions() {
+    this.setState({ height: window.innerHeight });
+  };
+
+  render() {
+    const { height } = this.state;
+    const { theme } = this.props;
+    return (
+      <div className="app">
+        <div className="bg" style={{...themeStyles[theme], height }} />
+        <div className="wrapper">
+          <Router history={history}>
+            <div>
+              <Switch>
+                <PublicRoute path="/" component={LoginPage} exact={true} />
+                <PrivateRoute path="/write" component={EditorPage} />
+                <PrivateRoute path="/users/:username" component={ArchivePage} />
+                <PrivateRoute path="/settings" component={SettingsPage} />
+              </Switch>
+            </div>
+          </Router>
         </div>
-      </Router>
-    </div>
-  </div>
-);
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   theme: state.auth.theme
